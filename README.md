@@ -24,7 +24,7 @@
 
 ## Instructions to Run the App
 1. Clone this repository to your local machine.
-2. Open the project in Xcode and ensure the target scheme is selected.
+2. Open the project in Xcode or double-click TestProductsApp.xcodeproj in root directory and ensure the target scheme is selected.
 3. Run the project using the iOS Simulator or a connected iOS device.
 
 ## Configuration
