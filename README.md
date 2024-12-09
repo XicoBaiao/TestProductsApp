@@ -35,3 +35,16 @@
 - **Endpoint**: `https://dummyjson.com/products`
 - **Pagination**: Fetch products in chunks of 15 using query parameters `?limit` and `?skip`.
 - **Caching**: All fetched products are stored locally using Realm. The app compares cached products with the total product count from the API to ensure data completeness.
+
+## Note on Network Monitoring
+- The app uses NWPathMonitor from the Network framework to monitor internet connectivity. However, I found a discrepancy in the behavior of NWPathMonitor when running on a simulator versus a physical device:
+
+- **On a physical device**:
+  - path.status returns .unsatisfied when the Wi-Fi is turned off.
+  - path.status returns .satisfied when the Wi-Fi is turned on.
+    
+- **On a simulator**:
+  - path.status returns .satisfied when the Wi-Fi is turned off.
+  - path.status returns .unsatisfied when the Wi-Fi is turned on.
+
+- To handle this, the app dynamically detects whether it is running on a simulator or a physical device and adjusts the logic accordingly to ensure consistent network connectivity detection.
