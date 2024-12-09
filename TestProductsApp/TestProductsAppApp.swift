@@ -6,12 +6,25 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 @main
-struct TestProductsAppApp: App {
+struct TestProductsAppApp: SwiftUI.App {
+    init() {
+        configureRealm()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+    }
+
+    private func configureRealm() {
+        let config = Realm.Configuration(
+            schemaVersion: 2,
+            objectTypes: [RealmProduct.self]
+        )
+        Realm.Configuration.defaultConfiguration = config
     }
 }
