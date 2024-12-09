@@ -17,11 +17,23 @@ class NetworkMonitor: ObservableObject {
     init() {
         monitor.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {
-                // Not sure why but if we have network connection path.status value is unsatisfied and when we turn wifi off becomes satisfied, that's why condition looks confusing.
-                self?.isConnected = path.status == .unsatisfied
+                if self?.isRunningOnSimulator() == true {
+                    // Flip the logic for simulator
+                    self?.isConnected = path.status != .satisfied
+                } else {
+                    // Standard logic for physical devices
+                    self?.isConnected = path.status == .satisfied
+                }
             }
         }
         monitor.start(queue: queue)
     }
-}
 
+    private func isRunningOnSimulator() -> Bool {
+        #if targetEnvironment(simulator)
+        return true
+        #else
+        return false
+        #endif
+    }
+}
