@@ -1,5 +1,16 @@
 # TestProductsApp
 
+## Architecture: MVVM
+- **Model**:
+  - Represents the data and business logic.
+  - Product, ProductResponse, and Realm models (RealmProduct).
+- **View**:
+  - Responsible for the UI and displaying data to the user.
+  - ProductListView and ProductDetailView.
+- **ViewModel**:
+  - Acts as the intermediary between the View and the Model.
+  - ProductListViewModel, which fetches data from APIs, manages caching with Realm, and handles network monitoring.
+
 ## Features
 - **Product List**: Displays a list of products fetched from the API.
 - **Product Details**: Detailed view of a product, including title, description, price, ratings, reviews, and stock information.
